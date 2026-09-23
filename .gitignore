@@ -5,5 +5,6 @@
 *.png
 
 # Ignore intermediate testing artifacts 
-_pycache_
+__pycache__
+
  
