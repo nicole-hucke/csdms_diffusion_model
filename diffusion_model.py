@@ -28,7 +28,8 @@ z[x > Lx/2] = z_lo
 
 plot_profile(x, z, "r", title="Initial hillslope profile", outfile="initial_profile.png")
 
-nt = calculate_stable_time_step(dx, D)
+nt = 5000
+dt = calculate_stable_time_step(dx, D)
 
 for t in range(0, nt):
 	z[1:-1] += D * dt / dx ** 2 * (z[:-2] - 2*z[1:-1] + z[2:])
