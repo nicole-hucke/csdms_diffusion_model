@@ -1,6 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def plot_profile(xvals, yvals, color="r", title=None, outfile=None):
+    plt.figure()
+    plt.plot(xvals, yvals, color)
+    plt.xlabel("distance") 
+    plt.ylabel("elevation")
+    plt.title(title)
+    plt.savefig(outfile)
+
 D = 100
 Lx = 300
 
@@ -15,12 +23,7 @@ z_lo = 0.0
 z[x <= Lx/2] = z_hi
 z[x > Lx/2] = z_lo
 
-plt.figure()
-plt.plot(x,z,"r")
-plt.xlabel("x") 
-plt.ylabel("z")
-plt.title("Initial hillslope profile")
-plt.show() 
+plot_profile(x, z, "r", title="Initial hillslope profile", outfile="initial_profile.png")
 
 nt = 5000
 dt = 0.5 * dx**2 / D
@@ -28,10 +31,5 @@ dt = 0.5 * dx**2 / D
 for t in range(0, nt):
 	z[1:-1] += D * dt / dx ** 2 * (z[:-2] - 2*z[1:-1] + z[2:])
 
-plt.figure()
-plt.plot(x,z,"b")
-plt.xlabel("x") 
-plt.ylabel("z")
-plt.title("Final hillslope profile")
-plt.show() 
+plot_profile(x, z, "b", title="FInal hillslope profile", outfile="final_profile.png")
 
